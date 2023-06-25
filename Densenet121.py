@@ -1,7 +1,3 @@
-{
- "cells": [
-  {
-   "cell_type": "code",import pandas as pd
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.applications import DenseNet121
 from tensorflow.keras.layers import Dense, GlobalAveragePooling2D
