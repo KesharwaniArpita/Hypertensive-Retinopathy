@@ -75,7 +75,7 @@ def Densenet(num_epochs):
 
 
 
-   "execution_count": 13,
+   
    "metadata": {},
    "outputs": [
     {
