@@ -76,8 +76,7 @@ def Densenet(num_epochs):
 
 
    
-   "metadata": {},
-   "outputs": [
+   
     {
      "name": "stdout",
      "output_type": "stream",
