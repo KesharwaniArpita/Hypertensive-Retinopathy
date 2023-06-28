@@ -77,13 +77,7 @@ def Densenet(num_epochs):
 
    
    
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "Found 570 validated image filenames belonging to 2 classes.\n",
-      "Found 142 validated image filenames belonging to 2 classes.\n",
-      "Epoch 1/20\n",
+    "Epoch 1/20\n",
       "18/18 [==============================] - 406s 19s/step - loss: 0.7790 - accuracy: 0.6175 - val_loss: 0.7366 - val_accuracy: 0.2817\n",
       "Epoch 2/20\n",
       "18/18 [==============================] - 304s 17s/step - loss: 0.6887 - accuracy: 0.6544 - val_loss: 0.7925 - val_accuracy: 0.2606\n",
