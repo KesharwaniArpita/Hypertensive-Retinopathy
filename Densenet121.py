@@ -54,7 +54,7 @@ valid_generator = datagen.flow_from_dataframe(
 )
 
 # Train the model
-history = model.fit(train_generator, validation_data=valid_generator, epochs=num_epochs, verbose=0)
+history = model.fit(train_generator, validation_data=valid_generator, epochs=10, verbose=0)
 
 # Evaluate the model on the test set
 test_generator = datagen.flow_from_dataframe(
