@@ -188,25 +188,6 @@ plot_accuracy(history, "DenseNet121")
     "    x_col='Image',\n",
     "    y_col='Hypertensive Retinopathy',\n",
     "    batch_size=32,\n",
-    "    shuffle=False,\n",
-    "    class_mode='binary',\n",
-    "    target_size=(224, 224)\n",
-    ")\n",
-    "\n",
-    "loss, accuracy = model.evaluate(test_generator)\n",
-    "print('Test Loss:', loss)\n",
-    "print('Test Accuracy:', accuracy)\n"
-   ]
-  }
- ],
- "metadata": {
-  "kernelspec": {
-   "display_name": "Python 3",
-   "language": "python",
-   "name": "python3"
-  },
-  "language_info": {
-   "codemirror_mode": {
-    "name": "ipython",
-    "version": 3
+    "
+ 
    
