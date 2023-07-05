@@ -20,7 +20,7 @@ def Efficientnet(num_epochs):
     model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
 
     # Load the image filenames and labels from the Excel file
-    data = pd.read_excel('/content/drive/MyDrive/Dataset/2-Hypertensive Retinopathy Classification/2-Groundtruths/HRDC Hypertensive Retinopathy Classification Training Labels.xlsx', engine='openpyxl')
+    data = pd.read_excel('HRDC Hypertensive Retinopathy Classification Training Labels.xlsx', engine='openpyxl')
     image_files = data['Image'].tolist()
     labels = data['Hypertensive Retinopathy'].tolist()
 
@@ -31,7 +31,7 @@ def Efficientnet(num_epochs):
 
     train_generator = train_datagen.flow_from_dataframe(
         dataframe=data,
-        directory='/content/drive/MyDrive/Dataset/2-Hypertensive Retinopathy Classification/1-Images/1-Training Set',
+        directory='1-Training Set',
         x_col='Image',
         y_col='Hypertensive Retinopathy',
         subset='training',
@@ -43,7 +43,7 @@ def Efficientnet(num_epochs):
 
     valid_generator = train_datagen.flow_from_dataframe(
         dataframe=data,
-        directory='/content/drive/MyDrive/Dataset/2-Hypertensive Retinopathy Classification/1-Images/1-Training Set',
+        directory='1-Training Set',
         x_col='Image',
         y_col='Hypertensive Retinopathy',
         subset='validation',
@@ -61,7 +61,7 @@ def Efficientnet(num_epochs):
 
     test_generator = test_datagen.flow_from_dataframe(
         dataframe=data,
-        directory='/content/drive/MyDrive/Dataset/2-Hypertensive Retinopathy Classification/1-Images/1-Training Set',
+        directory='Testing Set',
         x_col='Image',
         y_col='Hypertensive Retinopathy',
         batch_size=32,
