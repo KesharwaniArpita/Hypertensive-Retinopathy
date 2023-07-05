@@ -12,7 +12,7 @@ import numpy as np
 
 def train_and_plot_model(num_epochs):
     # Load the data from the Excel file
-    data = pd.read_excel('C:/Users/DELL/Documents/IAS internship docs/IAS project/Hypertensive retinopathy/Dataset/2-Hypertensive Retinopathy Classification/2-Groundtruths/HRDC Hypertensive Retinopathy Classification Training Labels.xlsx', engine='openpyxl')
+    data = pd.read_excel('HRDC Hypertensive Retinopathy Classification Training Labels.xlsx', engine='openpyxl')
     data['Hypertensive Retinopathy'] = data['Hypertensive Retinopathy'].astype(str)
 
     # Split the data into training and validation sets
@@ -32,7 +32,7 @@ def train_and_plot_model(num_epochs):
 
     train_generator = train_datagen.flow_from_dataframe(
         dataframe=train_data,
-        directory='C:/Users/DELL/Documents/IAS internship docs/IAS project/Hypertensive retinopathy/Dataset/2-Hypertensive Retinopathy Classification/1-Images/1-Training Set',
+        directory='1-Training Set',
         x_col='Image',
         y_col='Hypertensive Retinopathy',
         target_size=(224, 224),
@@ -42,7 +42,7 @@ def train_and_plot_model(num_epochs):
 
     valid_generator = valid_datagen.flow_from_dataframe(
         dataframe=valid_data,
-        directory='C:/Users/DELL/Documents/IAS internship docs/IAS project/Hypertensive retinopathy/Dataset/2-Hypertensive Retinopathy Classification/1-Images/1-Training Set',
+        directory='1-Training Set',
         x_col='Image',
         y_col='Hypertensive Retinopathy',
         target_size=(224, 224),
@@ -73,7 +73,7 @@ def train_and_plot_model(num_epochs):
     # Evaluate the model on the test set
     test_generator = valid_datagen.flow_from_dataframe(
         dataframe=data,
-        directory='C:/Users/DELL/Documents/IAS internship docs/IAS project/Hypertensive retinopathy/Dataset/2-Hypertensive Retinopathy Classification/1-Images/1-Training Set',
+        directory='Testing Set',
         x_col='Image',
         y_col='Hypertensive Retinopathy',
         target_size=(224, 224),
