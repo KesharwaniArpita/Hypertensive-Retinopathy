@@ -24,7 +24,7 @@ The following libraries were majorily used:
 ## Installations
 1. To install [python 3.10.x](https://www.python.org/downloads/)
 2. To install [Visual Studio Code](https://code.visualstudio.com/download)
-3. To install [Jupyter notebok throuhgh Anaconda](https://jupyter.org/install)   
+3. To install [Jupyter notebok through Anaconda](https://jupyter.org/install)   
 4. To install the required modules<br>
    ```
    pip install module name
