@@ -7,6 +7,7 @@ from tensorflow.keras.layers import Dense, GlobalAveragePooling2D
 from tensorflow.keras.models import Model
 import numpy as np
 import matplotlib.pyplot as plt
+from tensoflow.keras.optimizers import Adam
 
 # Load the ResNet50 model without the top (classification) layers
 base_model = ResNet50(weights=None, include_top=False, input_shape=(224, 224, 3))
@@ -19,7 +20,7 @@ predictions = Dense(1, activation='sigmoid')(x)  # Assuming binary classificatio
 model = Model(inputs=base_model.input, outputs=predictions)
 
 # Compile the model
-model.compile(optimizer=Adam(learning_rate=0.002), loss='binary_crossentropy', metrics=['accuracy'])
+model.compile(optimizer=Adam(learning_rate=0.0001), loss='binary_crossentropy', metrics=['accuracy'])
 
 # Load the image filenames and labels from the Excel file
 data = pd.read_excel('C:/Users/DELL/Documents/IAS internship docs/IAS project/Hypertensive retinopathy/Dataset/2-Hypertensive Retinopathy Classification/2-Groundtruths/HRDC Hypertensive Retinopathy Classification Training Labels.xlsx', engine='openpyxl')
@@ -84,7 +85,7 @@ for fold, (train_index, valid_index) in enumerate(kf.split(data), 1):
 
     test_generator = test_datagen.flow_from_dataframe(
         dataframe=valid_data,
-        directory='C:/Users/DELL/Documents/IAS internship docs/IAS project/Hypertensive retinopathy/Dataset/2-Hypertensive Retinopathy Classification/1-Images/1-Training Set',
+        directory='C:/Users/DELL/Documents/IAS internship docs/IAS project/Hypertensive retinopathy/Dataset/2-Hypertensive Retinopathy Classification/1-Images/Test Set',
         x_col='Image',
         y_col='Hypertensive Retinopathy',
         batch_size=32,
