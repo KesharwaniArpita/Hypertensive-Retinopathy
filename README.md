@@ -25,12 +25,12 @@ The following libraries were majorily used:
 1. To install [python 3.10.x](https://www.python.org/downloads/)
 2. To install [Visual Studio Code](https://code.visualstudio.com/download)
 3. To install [Jupyter notebok through Anaconda](https://jupyter.org/install)   
-4. To install the required modules<br>
+4. To install the required modules:<br>
    ```
    pip install module name
    ```
 ## Running the script
-To clone this repository<br>
+To clone this repository:<br>
    ```git
    git clone "https://github.com/KesharwaniArpita/Hypertensive-Retinopathy"
    ```
