@@ -3,21 +3,21 @@ import cv2
 import numpy as np
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score, confusion_matrix
+from sklearn.metrics import accuracy_score, confusion_matrix, cohen_kappa_score, f1_score
 from sklearn.model_selection import train_test_split
 from tensorflow.keras.applications import VGG16
 from tensorflow.keras.models import Model
 
 # Specify the directory where the fundus images are stored
 # Specify the directory where the fundus images are stored
-image_dir = 'C:/Users/DELL/Documents/IAS internship docs/IAS project/Hypertensive retinopathy/Dataset/2-Hypertensive Retinopathy Classification/1-Images/1-Training Set'
-csv_file = 'C:/Users/DELL/Documents/IAS internship docs/IAS project/Hypertensive retinopathy/Dataset/2-Hypertensive Retinopathy Classification/2-Groundtruths/HRDC Hypertensive Retinopathy Classification Training Labels.csv'
+image_dir = 'C:/Users/DELL/Documents/IAS internship docs/IAS project/Hypertensive retinopathy/Dataset/2-Hypertensive Retinopathy Classification/1-Images/Overall'
+excel_file = 'C:/Users/DELL/Documents/IAS internship docs/IAS project/Hypertensive retinopathy/Dataset/2-Hypertensive Retinopathy Classification/2-Groundtruths/HRDC Hypertensive Retinopathy Classification Training Labels.xlsx'
 
 # Specify the target image size
-target_size = (224, 224)
+target_size = (512, 512)
 
-# Load the labels from the CSV file using Pandas
-data = pd.read_csv(csv_file)
+# Load the labels from the Excel file using Pandas
+data = pd.read_excel(excel_file)
 
 # Load the pre-trained VGG16 model
 base_model = VGG16(weights='imagenet', include_top=False, input_shape=(target_size[0], target_size[1], 3))
@@ -63,7 +63,20 @@ classifier.fit(train_features, train_labels)
 
 # Use the trained model to predict labels for the test features
 predictions = classifier.predict(test_features)
+# Calculate the Kappa score
+kappa = cohen_kappa_score(test_labels, predictions)
 
+# Calculate the F1 score
+f1 = f1_score(test_labels, predictions, average='weighted')
+
+# Calculate the specificity
+tn, fp, fn, tp = confusion_matrix(test_labels, predictions).ravel()
+specificity = tn / (tn + fp)
+
+# Print the Kappa score, F1 score, and specificity
+print('Kappa Score:', kappa)
+print('F1 Score:', f1)
+print('Specificity:', specificity)
 # Evaluate the model's performance
 accuracy = accuracy_score(test_labels, predictions)
 confusion_mtx = confusion_matrix(test_labels, predictions)
