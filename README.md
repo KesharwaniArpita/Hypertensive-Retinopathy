@@ -3,6 +3,12 @@
 Hypertensive Retinopathy (HR) is a type of retinal damage caused by high blood pressure and Hypertension and prompts vision loss. HR is generally diagnosed at a later stage of illness when the retinal damage starts affecting the vision. The HR damages the pathological lesions of eyes including arteriolar narrowing, retinal hemorrhage, macular edema, cotton wool spots and swollen blood vessels. If detected at an early stage, the effect can be reversed. Therefore, it is essential for Patients of Hypertension to get their eyes checked regularly.
 The analysis of HR mostly relies on manual inspection and experience of the ophthalmologists. Hence, a Deep Learning based approach is necessary to assist ophthalmologists to analyze the progression of disease. 
 ### Functioning of the models
+For this research, I have used various deep learning and machine learning models.<br>
+There are four folders in the repository :
+1. Models: Contains the models implemented on the dataset.
+2. Images: Contains some of the images from the original dataset to run tests.
+3. Plots: Contains the code for plots using matplotlib to track the traing and performance on the model.
+4. Tests: contains the unttest files for Resnet50 and random forest.
 ### Technologies and libraries used
 
 The contents of this repository were created and implemented in Python IDLE 3.10.10 and Jupyter notebook in Visual Studio .
