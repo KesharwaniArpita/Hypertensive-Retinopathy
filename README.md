@@ -1,6 +1,6 @@
 # Hypertensive-Retinopathy
 ## Introduction and Description
-Hypertensive Retinopathy (HR) is a type of retinal damage caused by high blood pressure and Hypertension and prompts vision loss. HR is generally diagnosed at a later stage of illness when the retinal damage starts affecting the vision. The HR damages the pathological lesions of eyes including arteriolar narrowing, retinal hemorrhage, macular edema, cotton wool spots and swollen blood vessels. If detected at an early stage, the effect can be reversed. Therefore, it is essential for Patients of Hypertension to get their eyes checked regularly.
+Hypertensive Retinopathy (HR) is a type of retinal damage caused by high blood pressure and Hypertension and prompts vision loss. HR is generally diagnosed at a later stage of illness when the retinal damage starts affecting the vision. The HR damages the pathological lesions of eyes including arteriolar narrowing, retinal hemorrhage, macular edema, cotton wool spots and swollen blood vessels. If detected at an early stage, the effect can be reversed. Therefore, it is essential for Patients of Hypertension to get their eyes checked regularly.<br>
 The analysis of HR mostly relies on manual inspection and experience of the ophthalmologists. Hence, a Deep Learning based approach is necessary to assist ophthalmologists to analyze the progression of disease. 
 ### Functioning of the models
 For this research, I have used various deep learning and machine learning models.<br>
@@ -33,7 +33,7 @@ The following libraries were majorily used:
 3. To install [Jupyter notebok through Anaconda](https://jupyter.org/install)   
 4. To install the required modules:<br>
    ```
-   pip install module name
+   pip install "module name"
    ```
 ## Running the script
 To clone this repository:<br>
@@ -48,4 +48,4 @@ To use the project :
 4. The models will be trained to the traing images and same the weights from traing in an .h5 file to the location where your scipt is saved.
 5. After the first time, one can train the model using those weights and can make predictions too.
 ## License
-This project is licensed under the MIT-License - Please see the LICENSE.md file for details.
+This project is licensed under the MIT-License - Please see the LICENSE file for details.
