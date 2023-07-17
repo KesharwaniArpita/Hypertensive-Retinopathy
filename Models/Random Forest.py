@@ -1,3 +1,21 @@
+"""
+
+name: Random Forest Classifier
+author: Arpita Kesharwani
+version: 1.0
+description: A random forest classifier for image classification
+tags:
+  - machine learning
+  - image classification
+dependencies:
+  - opencv-python==4.5.3
+  - pandas==1.3.0
+  - scikit-learn==0.24.2
+  - tensorflow==2.5.0
+  - keras==2.4.3
+  - numpy==1.21.0
+  
+"""
 import os
 import cv2
 import numpy as np
