@@ -1,72 +1,59 @@
 import os
 import numpy as np
-import pandas as pd
-from tensorflow.keras.preprocessing.image import load_img, img_to_array
-import matplotlib.pyplot as plt
-from sklearn.metrics import confusion_matrix
+import tensorflow as tf
+from tensorflow.keras.layers import Input, Conv2D, DepthwiseConv2D, BatchNormalization, ReLU, MaxPooling2D, Add, Flatten, Dense, AveragePooling2D
+from tensorflow.keras.models import Model
 from tensorflow.keras.optimizers import Adam
-from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+from sklearn.model_selection import KFold
+from sklearn.metrics import confusion_matrix, accuracy_score, precision_score, recall_score, f1_score
+import matplotlib.pyplot as plt
 
-# Assuming one has the Mobile-HR model and train_model_with_train_test_split functions defined
-# ... (code for the Mobile-HR model and train_model_with_train_test_split functions)
+def mobile_hr_model(input_shape, num_classes):
+    # Input layer
+    inputs = Input(shape=input_shape)
 
-def plot_loss_and_accuracy(history):
-    # Plot training and validation loss
-    plt.figure(figsize=(10, 5))
-    plt.plot(history.history['loss'], label='Training Loss')
-    plt.plot(history.history['val_loss'], label='Validation Loss')
-    plt.xlabel('Epoch')
-    plt.ylabel('Loss')
-    plt.legend()
-    plt.title('Training and Validation Loss')
-    plt.show()
+    # Step 1: Input normalization of raw data
+    x = inputs
 
-    # Plot training and validation accuracy
-    plt.figure(figsize=(10, 5))
-    plt.plot(history.history['accuracy'], label='Training Accuracy')
-    plt.plot(history.history['val_accuracy'], label='Validation Accuracy')
-    plt.xlabel('Epoch')
-    plt.ylabel('Accuracy')
-    plt.legend()
-    plt.title('Training and Validation Accuracy')
-    plt.show()
+    # Step 2: Function definition
+    def conv_bn(x, filters, kernel_size=3, strides=1):
+        x = Conv2D(filters=filters, kernel_size=kernel_size, strides=strides, padding='same')(x)
+        x = BatchNormalization()(x)
+        x = ReLU()(x)
+        return x
 
-if __name__ == "__main__":
-    input_shape = (224, 224, 3)  # Adjust the input shape based on your image size
-    num_classes = 2  # Binary classification (normal or HR)
+    # Step 3: Kernel sizes and conv-batch norm
+    x = conv_bn(x, filters=32)
+    y = Conv2D(filters=32, kernel_size=1, strides=1, padding='same')(x)
 
-    data_folder = 'c:\\Users\\DELL\\Documents\\New Data\\N'
-    image_filenames = os.listdir(data_folder)
-    num_images = len(image_filenames)
+    # Step 4: Depthwise Conv2D was used rather than Conv2D
+    x = DepthwiseConv2D(kernel_size=3, strides=1, padding='same')(x)
+    x = BatchNormalization()(x)
+    x = ReLU()(x)
 
-    X = np.zeros((num_images, input_shape[0], input_shape[1], input_shape[2]))
-    y = np.zeros(num_images)
+    # Step 5: Establishing the network with skip connections
+    for _ in range(14):
+        # Skip connection
+        x = Add()([x, y])
+        y = x
 
-    # Assuming the Excel file contains two columns: 'Image' and 'Label'
-    excel_file = 'c:\\Users\\DELL\\Documents\\New Data\\ODIR groundtruth.xlsx'
-    df = pd.read_excel(excel_file)
+        # Depthwise Convolution
+        x = DepthwiseConv2D(kernel_size=3, strides=1, padding='same')(x)
+        x = BatchNormalization()(x)
+        x = ReLU()(x)
 
-    for idx, filename in enumerate(image_filenames):
-        img_path = os.path.join(data_folder, filename)
-        img = load_img(img_path, target_size=(input_shape[0], input_shape[1]))
-        img_array = img_to_array(img)
-        X[idx] = img_array
+        # Pointwise Convolution
+        x = conv_bn(x, filters=32)
 
-        # Assuming 'Image' column in the Excel file contains the image filenames and 'Label' column contains the labels
-        
-        label = df[df['Image'] == filename]['H'].values[0]
-        y[idx] = label
+    # Step 6: Flattened layer and feature map extraction
+    x = AveragePooling2D(pool_size=(7, 7))(x)
+    x = Flatten()(x)
 
-    # Convert labels to categorical format
-    y = np.expand_dims(y, axis=1)  # Add an extra dimension to make it (num_images, 1)
+    # SVM Classifier
+    svm_output = Dense(1, activation='linear')(x)
 
-    batch_size = 32
-    epochs = 3
+    # Create the Mobile-HR model
+    model = Model(inputs=inputs, outputs=svm_output)
 
-    # Train the Mobile-HR model with train-test split
-    # Train the Mobile-HR model with train-test split
-    history, accuracies, sensitivities, specificities, f1_scores, losses = train_model_with_train_test_split(
-        X, y, input_shape, num_classes, batch_size=batch_size, epochs=epochs
-    )
-    # Plot training and validation loss/accuracy
-    plot_loss_and_accuracy(history)
+    return model
+
