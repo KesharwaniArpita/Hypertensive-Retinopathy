@@ -46,9 +46,9 @@ To clone this repository:<br>
    ```
 ## Using the project
 To use the project :
-1. Download the complete dataset.
-2. Set apart a portion of images as test from the 1-training images.
-3. Provide the paths to the 1-training folder, test folder and excel file to the models .
+1. Download the complete datasets.
+2. Set apart a portion of images as test from thewhole datasets .
+3. Provide the paths to the training folder, test folder and groundtruth excel file to the models .
 4. The models will be trained to the traing images and same the weights from traing in an .h5 file to the location where your scipt is saved.
 5. After the first time, one can train the model using those weights and can make predictions too.
 ## License
