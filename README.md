@@ -4,6 +4,8 @@ Hypertensive Retinopathy (HR) is a type of retinal damage caused by high blood p
 The analysis of HR mostly relies on manual inspection and experience of the ophthalmologists. Hence, a Deep Learning based approach is necessary to assist ophthalmologists to analyze the progression of disease. 
 ### Datasets
 1. [Hypertensive Retinopathy Detection competition Dataset](https://codalab.lisn.upsaclay.fr/competitions/11877#participate-get-data).
+2. [Ocular Disease Intelligent Recognition (ODIR)](https://www.kaggle.com/datasets/andrewmvd/ocular-disease-recognition-odir5k).
+3. [1000 Fundus images](https://www.kaggle.com/datasets/linchundan/fundusimage1000).
 ### Functioning of the models
 For this research, I have used various deep learning and machine learning models.<br>
 There are four folders in the repository :
