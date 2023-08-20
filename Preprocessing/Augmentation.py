@@ -24,7 +24,7 @@ datagen = ImageDataGenerator(
 
 # Loop through the DataFrame and perform data augmentation for the minority class
 for index, row in data.iterrows():
-    if row['H'] == 1:  # Replace 'minority_label' with the numerical value of the minority class label
+    if row['Hypertensive Retinopathy'] == 1:  # Replace 'minority_label' with the numerical value of the minority class label
         img_path = os.path.join(image_folder, row['Image'])  # Replace 'Image_Name_Column' with the column name containing image names
         # Load the image and resize it to the desired target size (e.g., 224x224)
         img = load_img(img_path, target_size=(224, 224))
